@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 16px;
+    }
+
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
+
+<body>
+    <form>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <label for="confirmPassword">Xác nhận mật khẩu:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+        <br>
+        <button type="button" onclick="saveAccount()">Đăng ký</button>
+    </form>
+    <script>
+        html
+        function saveAccount() {
+            // Lấy thông tin từ biểu mẫu
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Mật khẩu không khớp,vui lòng nhập lại");
+                return false;
+            }
+
+            // Kiểm tra sự tồn tại của email đăng ký
+            const tk = JSON.parse(localStorage.getItem(email))
+            if (tk == undefined) {
+
+            } else {
+                if (tk.email == email) {
+                    alert("Email đã tồn tại! Vui lòng sử dụng email khác");
+                    return false;
+                }
+            }
+
+            // Lưu thông tin tài khoản vào Local Storage
+            let account = { email: email, password: password };
+            localStorage.setItem(email, JSON.stringify(account));
+            return true;
+        }
+    </script>
+</body>
+
+</html>

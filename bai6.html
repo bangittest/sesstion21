@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: antiquewhite;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+            color: rgb(139, 90, 31);
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: burlywood;
+        }
+
+        input {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+            margin-left: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: chocolate;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: blue;
+        }
+
+        .submib {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Register</h1>
+        <form action="" id="register">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="" id="email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="" id="password" required>
+            </div>
+            <div>
+                <label for="confirmpassword">Confirm Password:</label>
+                <input type="password" name="" id="confirmpassword">
+            </div>
+            <p id="errMess" style="color: blue;"></p>
+            <div class="submib">
+                <button type="submit">Dang ky</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
+    <script>
+        const newEmail = document.getElementById("email")
+        const newPassword = document.getElementById("password")
+        const newConfimpassword = document.getElementById("confirmpassword")
+        const newErrmes = document.getElementById("errMess")
+        document.getElementById("register").addEventListener("submit", function (e) {
+            e.preventDefault()
+            const email1 = newEmail.value
+            const password1 = newPassword.value
+            const newConf = newConfimpassword.value
+            if (password1 != newConf) {
+                newErrmes.innerHTML = "ban nhap chua ttung mk"
+                return
+            } else {
+                newErrmes.innerHTML = ""
+            }
+            const user = JSON.parse(localStorage.getItem("datauser"))
+            const index = user.findIndex(i => i.email == email)
+            if (index != -1) {
+                newErrmes.innerHTML = "da ton tai"
+            } else {
+                const aaa = {
+                    email1, password1
+                }
+                user.push(aaa)
+                localStorage.setItem("datauser", JSON.stringify(user))
+            }
+            this.resert()
+        })
+    </script>
+
+    <script>
+
+
+        // const newEmail = document.getElementById("email")
+        // const newPassword = document.getElementById("password")
+        // const newConfimpassword = document.getElementById("confirmpassword")
+        // const newErrmes = document.getElementById("errMess")
+        // document.getElementById("register").addEventListener("submit", function (e) {
+        //     e.preventDefault()
+        //     const email = newEmail.value
+        //     const password = newPassword.value
+        //     const confirm = newConfimpassword.value
+        //     if (password != confirm) {
+        //         newErrmes.innerHTML = "ban nhap khong trung mat khau"
+        //         return
+        //     } else {
+        //         newErrmes.innerHTML = ""
+        //     }
+        //     const user = JSON.parse(localStorage.getItem("data"))
+        //     const value = user.findIndex(user => user.email == email)
+        //     if (value != -1) {
+        //         newErrmes.innerHTML = "tai khoan da ton tai"
+        //     } else {
+        //         const index = {
+        //             email, password
+        //         }
+        //         user.push(index)
+        //         localStorage.setItem("data", JSON.stringify(user))
+        //     }
+        //     this.reset()
+
+        // })
+    </script>
+
+
+    <!-- <script>
+        const newEmail = document.getElementById("email")
+        const newPassword = document.getElementById("password")
+        const newConfimpassword = document.getElementById("confirmpassword")
+        const newErrmes = document.getElementById("errMess")
+
+        //
+        document.getElementById("register").addEventListener("submit", function (e) {
+            e.preventDefault()
+            const email = newEmail.value;
+            const password = newPassword.value
+            const confirmpassword = newConfimpassword.value
+            if (password != confirmpassword) {
+                newErrmes.innerHTML = "xac nhan lai mat khau!"
+                return
+            } else {
+                newErrmes.innerHTML = ""
+            }
+            // keso dl ve
+            const users = JSON.parse(localStorage.getItem("data"))
+            // const index = users.findIndex(user => user.email == email)
+            const index = users.findIndex(value => value.email === email)
+            if (index != -1) {
+                newErrmes.innerHTML = "da cos tai khoan nay"
+            }
+            else {
+                const value = {
+                    email, password
+                }
+                users.push(value)
+                localStorage.setItem("data", JSON.stringify(users))
+                newErrmes.innerHTML = "dang ki thanh cong"
+            }
+            this.reset()
+
+        })
+    </script> -->
+</body>
+
+</html>

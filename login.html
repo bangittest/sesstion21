@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Registration</h2>
+        <form id="registrationForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Validate email
+            if (email === "") {
+                alert("Please enter your email.");
+                return;
+            }
+
+            // Validate password
+            if (password === "") {
+                alert("Please enter your password.");
+                return;
+            }
+
+            // Validate confirm password
+            if (confirmPassword === "") {
+                alert("Please confirm your password.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            // Check email existence
+            // You can use AJAX to send a request to the server and check if the email already exists
+            // Example:
+            // $.post("check_email.php", { email: email }, function(response) {
+            //     if (response === "exists") {
+            //         alert("Email already exists.");
+            //     } else {
+            //         alert("Registration successful!");
+            //         // Save the account here
+            //     }
+            // });
+
+            // For demonstration purposes, let's assume the email does not exist
+            alert("Registration successful!");
+            // Save the account here
+        });
+    </script>
+</body>
+
+</html>

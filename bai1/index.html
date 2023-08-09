@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container input {
+            width: 150px;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form action="" id="register">
+            <h1>Register</h1>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="" id="email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="" id="password" placeholder="*****" required>
+            </div>
+            <div>
+                <label for="condirmpassword">Confirm Password:</label>
+                <input type="password" name="" id="condirmpassword" oninput="checkpass(this)" required>
+                <label id="confi" for=""></label>
+            </div>
+            <div>
+                <input type="submit" name="" id="bnt_button">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // localStorage.setItem("dataUser", JSON.stringify([]))
+        document.getElementById("register").addEventListener("submit", function (e) {
+            e.preventDefault()
+            if (!flag) {
+                document.getElementById("register").reset()
+                return
+            }
+            let email = document.getElementById("email").value
+            let password = document.getElementById("password").value
+            let data = JSON.parse(localStorage.getItem("dataUser"))
+            data.push({ email: email, password: password })
+            localStorage.setItem("dataUser", JSON.stringify(data))
+            document.getElementById("register").reset()
+        })
+
+        let flag = false
+        function checkpass(a) {
+            if (document.getElementById("password").value === a.value) {
+                document.getElementById("confi").innerHTML = ""
+                flag = true
+                return
+            }
+            document.getElementById("confi").innerHTML = "mat khau ko khop"
+            flag = false
+            return
+        }
+
+    </script>
+</body>
+
+</html>
